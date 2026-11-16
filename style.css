@@ -1,0 +1,1171 @@
+/* ============================================================
+   PORTFOLIO — style.css
+   Color Palette:
+     Navy Blue  : #0A1628
+     Mid Blue   : #1A3A6B
+     Orange     : #FF6B35
+     Light Orange: #FF8C5A
+     White      : #FFFFFF
+     Off-White  : #F4F6FA
+     Gray Text  : #8A9BB0
+   ============================================================ */
+
+
+/* ---------- 1. CSS RESET & BASE ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0A1628;
+  color: #FFFFFF;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ---------- 2. HEADER ---------- */
+.site-header {
+  position: fixed;           /* Sticks to top while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 0 2rem;
+  background-color: rgba(10, 22, 40, 0.90);   /* Slightly transparent navy */
+  backdrop-filter: blur(10px);                 /* Frosted glass effect */
+  border-bottom: 1px solid rgba(255, 107, 53, 0.15);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* --- Logo --- */
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FF6B35;              /* Orange brand color */
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #FF8C5A;              /* Slightly lighter orange on hover */
+}
+
+/* --- Logo Image Size --- */
+.logo-img {
+  height: 45px;              /* Adjust this value to resize your logo */
+  width: auto;               /* Keeps logo proportions correct */
+  display: block;
+  object-fit: contain;
+}
+
+
+/* --- Navigation --- */
+.nav-list {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #8A9BB0;              /* Muted gray for inactive links */
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+/* Underline animation on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #FF6B35;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #FFFFFF;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active page link styling */
+.nav-link.active {
+  color: #FF6B35;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+
+/* ---------- 3. HERO SECTION ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;           /* Full viewport height */
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  padding-top: 70px;           /* Offset for the fixed header */
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;                  /* Sits above the decorative shape */
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+/* --- Small label above name --- */
+.hero-label {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #8A9BB0;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+
+/* --- Main Headline --- */
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);  /* Responsive font size */
+  font-weight: 800;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+/* Orange highlight on part of the name */
+.hero-title .highlight {
+  color: #FF6B35;
+  position: relative;
+}
+
+
+/* --- Tagline Paragraph --- */
+.hero-tagline {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #8A9BB0;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-tagline strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+
+/* --- CTA Button --- */
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background-color: #FF6B35;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: #FF8C5A;
+  transform: translateY(-2px);                        /* Subtle lift effect */
+  box-shadow: 0 8px 28px rgba(255, 107, 53, 0.50);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+
+/* --- Decorative Background Shape --- */
+.hero-shape {
+  position: absolute;
+  top: -150px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(26, 58, 107, 0.6) 0%, rgba(10, 22, 40, 0) 70%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+/* --- Hero Background Image --- */
+/* Uses the logo image (IKC6164.PNG) as a large
+   decorative background on the RIGHT side of the hero.
+   Text content sits on the left and is unaffected.      */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  right: 0;                               /* Anchored to the right side */
+  width: 55%;                             /* Takes up right 55% of the hero */
+  height: 100%;
+  z-index: 1;                             /* Above .hero-shape (z-index:1) but below .hero-content (z-index:2) */
+  pointer-events: none;
+
+  /* Logo image as background */
+  background-image: url("IKCE6164.PNG")
+  background-size: contain;              /* Keeps logo proportions — no stretching */
+  background-position: center right;     /* Sits flush to the right */
+  background-repeat: no-repeat;
+  opacity: 0.12;                         /* Very subtle — text stays clearly readable */
+
+  /* Fade the image out toward the left so it blends into the navy background */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
+  mask-image: linear-gradient(to right, transparent 0%, black 40%);
+}
+
+
+/* ============================================================
+   ABOUT PAGE STYLES
+   (appended below — home.html styles above are untouched)
+   ============================================================ */
+
+
+/* ---------- LOGO WITH NAME (used on all pages) ---------- */
+/* Makes logo image and text name sit side by side */
+.logo-with-name {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;              /* Space between image and text name */
+  text-decoration: none;
+}
+
+.logo-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FF6B35;           /* Orange — matches brand color */
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.logo-with-name:hover .logo-name {
+  color: #FF8C5A;
+}
+
+
+/* ---------- REUSABLE: SECTION LABEL ---------- */
+/* Small uppercase tag above section headings */
+.section-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B35;
+  margin-bottom: 0.8rem;
+  border-left: 3px solid #FF6B35;
+  padding-left: 0.6rem;
+}
+
+
+/* ---------- REUSABLE: SECTION TITLE ---------- */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 3rem;
+  letter-spacing: -0.5px;
+}
+
+
+/* ---------- PAGE BANNER (About Me title area) ---------- */
+.page-banner {
+  position: relative;
+  padding: 10rem 2rem 5rem;    /* Extra top padding = space for fixed header */
+  background: linear-gradient(
+    135deg,
+    #0A1628 0%,
+    #1A3A6B 50%,
+    #0A1628 100%
+  );
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.page-banner-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.page-banner-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+
+.page-banner-sub {
+  font-size: 1.1rem;
+  color: #8A9BB0;
+  font-weight: 400;
+}
+
+/* Decorative circle shape in the banner background */
+.banner-shape {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+/* ---------- ABOUT MAIN SECTION ---------- */
+.about-main {
+  padding: 6rem 2rem;
+  background-color: #0A1628;
+}
+
+.about-main-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;    /* Stack: photo on top, text below */
+  align-items: center;
+  gap: 3rem;
+}
+
+
+/* --- Profile Photo --- */
+.about-photo-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* Replace 'your-profile-photo.jpg' in about.html to show your photo */
+.about-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;           /* Circular photo */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: relative;
+  z-index: 2;
+  border: 4px solid #FF6B35;   /* Orange border around photo */
+}
+
+/* Decorative ring behind the photo */
+.photo-ring {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 107, 53, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+/* --- Bio Text --- */
+.about-bio {
+  text-align: center;
+  max-width: 700px;
+}
+
+.about-bio-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.about-bio-text {
+  font-size: 1rem;
+  color: #8A9BB0;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.about-bio-text strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Space above the button */
+.about-bio .btn-primary {
+  margin-top: 1rem;
+}
+
+
+/* ---------- WHAT I DO SECTION ---------- */
+.what-i-do {
+  padding: 6rem 2rem;
+  background-color: #0D1E38;    /* Slightly lighter navy — creates visual separation */
+  border-top: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.what-i-do-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+/* --- Cards Grid --- */
+.cards-grid {
+  display: flex;
+  gap: 1.8rem;
+  justify-content: center;
+  flex-wrap: wrap;              /* Wraps on smaller screens */
+}
+
+.service-card {
+  background-color: #0A1628;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  border-radius: 12px;
+  padding: 2.2rem 2rem;
+  flex: 1 1 260px;              /* Each card is at least 260px wide */
+  max-width: 320px;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: #FF6B35;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(255, 107, 53, 0.15);
+}
+
+/* Icon circle */
+.card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.4rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.2px;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #8A9BB0;
+  line-height: 1.8;
+}
+
+
+/* ============================================================
+   CONTACT PAGE STYLES
+   (appended below — all previous styles untouched)
+   ============================================================ */
+
+
+/* ---------- CONTACT MAIN SECTION ---------- */
+.contact-main {
+  padding: 6rem 2rem;
+  background-color: #0A1628;        /* Same navy base as home */
+}
+
+.contact-main-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;                        /* Space between info and form */
+  align-items: flex-start;
+  flex-wrap: wrap;                  /* Stacks on smaller screens */
+}
+
+
+/* ---------- LEFT: CONTACT INFO ---------- */
+.contact-info {
+  flex: 1 1 300px;                  /* Takes up roughly left third */
+  max-width: 400px;
+}
+
+.contact-info-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.contact-info-desc {
+  font-size: 0.98rem;
+  color: #8A9BB0;
+  line-height: 1.9;
+  margin-bottom: 2.2rem;
+}
+
+
+/* --- Info Cards (Email, Phone, Location) --- */
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+  background-color: #0D1E38;        /* Slightly lighter navy panel */
+  border: 1px solid rgba(255, 107, 53, 0.12);
+  border-radius: 10px;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.info-card:hover {
+  border-color: #FF6B35;
+  transform: translateX(5px);       /* Slide right on hover */
+}
+
+/* Orange circle icon */
+.info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;                   /* Icon never shrinks */
+}
+
+.info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FF6B35;                   /* Orange label */
+}
+
+.info-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-value:hover {
+  color: #FF6B35;
+}
+
+
+/* ---------- RIGHT: CONTACT FORM ---------- */
+.contact-form-wrap {
+  flex: 1 1 420px;                  /* Takes up roughly right two-thirds */
+  background: linear-gradient(
+    145deg,
+    #0D1E38 0%,
+    #112240 100%
+  );
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  border-radius: 16px;
+  padding: 2.8rem 2.4rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* Two inputs side by side (Name + Email) */
+.form-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1 1 200px;                  /* Each input takes equal space */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8A9BB0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Input & Textarea shared styling */
+.form-input {
+  background-color: #0A1628;
+  border: 1px solid rgba(138, 155, 176, 0.25);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Orange glow when focused */
+.form-input:focus {
+  border-color: #FF6B35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+}
+
+/* Placeholder text color */
+.form-input::placeholder {
+  color: rgba(138, 155, 176, 0.5);
+}
+
+/* Textarea specific */
+.form-textarea {
+  resize: vertical;                 /* Only allow vertical resize */
+  min-height: 150px;
+}
+
+/* Submit button — full width */
+.btn-submit {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  margin-top: 0.4rem;
+}
+
+
+/* ============================================================
+   SKILLS PAGE STYLES
+   ============================================================ */
+
+
+/* ---------- SKILLS MAIN SECTION (two columns) ---------- */
+.skills-main {
+  padding: 6rem 2rem;
+  background-color: #0A1628;
+}
+
+.skills-main-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  flex-wrap: wrap;              /* Stacks on small screens */
+}
+
+
+/* ---------- LEFT: SKILL BARS ---------- */
+.skills-bars-col {
+  flex: 1 1 420px;
+}
+
+.skills-col-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Each skill bar row */
+.skill-bar-wrap {
+  margin-bottom: 1.6rem;
+}
+
+.skill-bar-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.skill-percent {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FF6B35;              /* Orange percentage */
+}
+
+/* The grey track (background of the bar) */
+.skill-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(138, 155, 176, 0.15);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+/* The orange filled portion — width is set inline in HTML */
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B35, #FF8C5A);
+  border-radius: 100px;
+}
+
+
+/* ---------- RIGHT: SKILL BADGES ---------- */
+.skills-badges-col {
+  flex: 1 1 320px;
+}
+
+.badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Individual badge pill */
+.skill-badge {
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgba(255, 107, 53, 0.35);
+  border-radius: 100px;        /* Fully rounded pill */
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FF6B35;
+  background-color: rgba(255, 107, 53, 0.06);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.skill-badge:hover {
+  background-color: #FF6B35;
+  color: #FFFFFF;
+  border-color: #FF6B35;
+}
+
+
+/* ---------- SOFT SKILLS SECTION ---------- */
+.soft-skills {
+  padding: 6rem 2rem;
+  background-color: #0D1E38;
+  border-top: 1px solid rgba(255, 107, 53, 0.1);
+  text-align: center;
+}
+
+.soft-skills-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Four soft skill cards in a row */
+.soft-cards-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.soft-card {
+  flex: 1 1 220px;
+  max-width: 260px;
+  background-color: #0A1628;
+  border: 1px solid rgba(255, 107, 53, 0.12);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.soft-card:hover {
+  border-color: #FF6B35;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(255, 107, 53, 0.12);
+}
+
+/* Emoji icon */
+.soft-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.soft-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+
+.soft-text {
+  font-size: 0.9rem;
+  color: #8A9BB0;
+  line-height: 1.8;
+}
+
+
+/* ============================================================
+   PORTFOLIO PAGE STYLES
+   ============================================================ */
+
+
+/* ---------- PORTFOLIO MAIN SECTION ---------- */
+.portfolio-main {
+  padding: 6rem 2rem;
+  background-color: #0A1628;
+}
+
+.portfolio-main-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+/* ---------- PROJECT CARDS GRID ---------- */
+/* 3 columns on wide screens, 2 on medium, 1 on small */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+/* Individual project card */
+.project-card {
+  background-color: #0D1E38;
+  border: 1px solid rgba(255, 107, 53, 0.12);
+  border-radius: 14px;
+  overflow: hidden;             /* Clips the image to rounded corners */
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: #FF6B35;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(255, 107, 53, 0.14);
+}
+
+
+/* --- Project Image Wrapper --- */
+.project-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;               /* Fixed image area height */
+  overflow: hidden;
+  background-color: #112240;   /* Fallback colour while image loads */
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* Covers the area without distortion */
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* Image zooms in on card hover */
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
+
+/* Overlay that appears on image hover */
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 22, 40, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                  /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay when card is hovered */
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+/* "View Project" button inside overlay */
+.project-view-btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  background-color: #FF6B35;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.project-view-btn:hover {
+  background-color: #FF8C5A;
+}
+
+
+/* --- Project Info Below Image --- */
+.project-info {
+  padding: 1.4rem 1.6rem 1.8rem;
+}
+
+/* Orange category tag */
+.project-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FF6B35;
+  margin-bottom: 0.6rem;
+}
+
+.project-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.1px;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: #8A9BB0;
+  line-height: 1.8;
+}
+
+
+/* ---------- PORTFOLIO CTA BLOCK ---------- */
+.portfolio-cta {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #0D1E38 0%, #112240 100%);
+  border: 1px solid rgba(255, 107, 53, 0.18);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.portfolio-cta-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+
+/* ---------- RESPONSIVE: GRID COLUMNS ---------- */
+/* 2 columns on tablets */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1 column on mobile */
+@media (max-width: 600px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-main-inner {
+    flex-direction: column;
+  }
+
+  .soft-cards-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+/* ============================================================
+   FOOTER STYLES — shared across all pages
+   ============================================================ */
+
+.site-footer {
+  background-color: #060E1A;             /* Deepest navy — darker than page bg */
+  border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+
+/* ---------- FOOTER MAIN ROW (3 columns) ---------- */
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+/* --- Column 1: Brand / Logo --- */
+.footer-brand {
+  flex: 1 1 280px;
+  max-width: 340px;
+}
+
+.footer-tagline {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  color: #8A9BB0;
+  line-height: 1.8;
+}
+
+
+/* --- Column 2 & 3: Nav + Contact --- */
+.footer-nav,
+.footer-contact {
+  flex: 1 1 160px;
+}
+
+.footer-nav-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B35;              /* Orange column heading */
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-link {
+  font-size: 0.92rem;
+  color: #8A9BB0;
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: #FF6B35;
+  padding-left: 4px;           /* Subtle slide on hover */
+}
+
+
+/* ---------- FOOTER BOTTOM BAR ---------- */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.footer-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: #8A9BB0;
+}
+
+.footer-credit {
+  font-size: 0.85rem;
+  color: rgba(138, 155, 176, 0.6);
+}
+
+/* Responsive: stack footer columns on small screens */
+@media (max-width: 600px) {
+  .footer-inner {
+    flex-direction: column;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
