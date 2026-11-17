@@ -233,29 +233,55 @@ ul {
 }
 
 
-/* --- Hero Background Image --- */
-/* Uses the logo image (IKC6164.PNG) as a large
-   decorative background on the RIGHT side of the hero.
-   Text content sits on the left and is unaffected.      */
-.hero-bg {
+/* --- Hero Full Background Image --- */
+/* Covers the ENTIRE hero section as a background image.
+   A dark overlay sits on top so text stays perfectly readable.
+   Replace 'IKCE6164.PNG' with any background image you want. */
+.hero-bg-full {
   position: absolute;
   top: 0;
-  right: 0;                               /* Anchored to the right side */
-  width: 55%;                             /* Takes up right 55% of the hero */
+  left: 0;
+  width: 100%;
   height: 100%;
-  z-index: 1;                             /* Above .hero-shape (z-index:1) but below .hero-content (z-index:2) */
+  z-index: 0;
   pointer-events: none;
 
-  /* Logo image as background */
-  background-image: url("IKCE6164.PNG")
-  background-size: contain;              /* Keeps logo proportions — no stretching */
-  background-position: center right;     /* Sits flush to the right */
-  background-repeat: no-repeat;
-  opacity: 0.12;                         /* Very subtle — text stays clearly readable */
+  /* ▼▼▼ REPLACE WITH YOUR HERO BACKGROUND IMAGE ▼▼▼ */
+  background-image: url('IKCE6164.PNG');
+  /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
-  /* Fade the image out toward the left so it blends into the navy background */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
-  mask-image: linear-gradient(to right, transparent 0%, black 40%);
+  background-size: cover;              /* Fills the full section */
+  background-position: center center;  /* Centers the image */
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay — sits between image and text */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 22, 40, 0.88) 0%,    /* Dark navy on left — covers text area */
+    rgba(10, 22, 40, 0.65) 100%   /* Slightly lighter on right */
+  );
+}
+
+/* Hero content and shape sit above the overlay */
+.hero-shape {
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 
@@ -313,24 +339,69 @@ ul {
 }
 
 
-/* ---------- PAGE BANNER (About Me title area) ---------- */
+/* ---------- PAGE BANNER (title area on all inner pages) ---------- */
 .page-banner {
   position: relative;
-  padding: 10rem 2rem 5rem;    /* Extra top padding = space for fixed header */
+  padding: 10rem 2rem 5rem;
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+
+  /* Fallback gradient if no background image is set */
   background: linear-gradient(
     135deg,
     #0A1628 0%,
     #1A3A6B 50%,
     #0A1628 100%
   );
-  overflow: hidden;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Background image for the banner — sits behind the dark overlay */
+/* Replace 'LMAJ5406.PNG' with any image to change the banner background */
+.banner-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* Image fills and crops to fit */
+  object-position: center;
+  z-index: 0;
+  display: block;
+  opacity: 1;
+}
+
+/* Dark overlay over the banner background image */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 22, 40, 0.85) 0%,
+    rgba(26, 58, 107, 0.78) 50%,
+    rgba(10, 22, 40, 0.85) 100%
+  );
+}
+
+/* Smaller decorative logo image shown in the banner heading */
+.banner-title-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 1.2rem;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.5));
+  position: relative;
+  z-index: 3;
 }
 
 .page-banner-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .page-banner-title {
@@ -347,7 +418,7 @@ ul {
   font-weight: 400;
 }
 
-/* Decorative circle shape in the banner background */
+/* Decorative circle glow behind the title */
 .banner-shape {
   position: absolute;
   top: -100px;
@@ -355,9 +426,9 @@ ul {
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
   border-radius: 50%;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -1167,5 +1238,482 @@ ul {
   .footer-bottom-inner {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE STYLES
+   Breakpoints:
+     Mobile  : max-width 480px
+     Tablet  : 481px – 768px
+     Laptop  : 769px – 1024px
+   All existing styles above are untouched.
+   ============================================================ */
+
+
+/* ============================================================
+   LAPTOP — 769px to 1024px
+   Slight adjustments: tighter spacing, smaller fonts
+   ============================================================ */
+@media (max-width: 1024px) {
+
+  /* Header */
+  .nav-list {
+    gap: 1.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 0 1.5rem;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    width: 45%;
+    opacity: 0.09;
+  }
+
+  /* About */
+  .about-main-inner {
+    gap: 2.5rem;
+  }
+
+  /* Skills */
+  .skills-main-inner {
+    gap: 2.5rem;
+  }
+
+  /* Portfolio — already handled above (2 columns) */
+
+  /* Contact */
+  .contact-main-inner {
+    gap: 2.5rem;
+  }
+
+  /* Footer */
+  .footer-inner {
+    gap: 2rem;
+  }
+}
+
+
+/* ============================================================
+   TABLET — 481px to 768px
+   Stack some layouts, reduce padding and font sizes
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* --- HEADER --- */
+  .site-header {
+    padding: 0 1.2rem;
+  }
+
+  .header-inner {
+    height: 65px;
+  }
+
+  /* Shrink logo name on tablet */
+  .logo-name {
+    font-size: 0.95rem;
+  }
+
+  .logo-img {
+    height: 38px;
+  }
+
+  /* Shrink nav gap */
+  .nav-list {
+    gap: 1.1rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+
+
+  /* --- HERO --- */
+  .hero {
+    padding: 0 1.2rem;
+    padding-top: 65px;
+    min-height: 100vh;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  /* Hide the logo watermark bg on tablet — saves space */
+  .hero-bg {
+    width: 100%;
+    opacity: 0.06;
+    -webkit-mask-image: none;
+    mask-image: none;
+    background-position: center center;
+  }
+
+  .hero-label {
+    font-size: 1rem;
+  }
+
+  .hero-tagline {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+
+  /* --- PAGE BANNER --- */
+  .page-banner {
+    padding: 8rem 1.5rem 4rem;
+  }
+
+  .page-banner-sub {
+    font-size: 1rem;
+  }
+
+
+  /* --- ABOUT --- */
+  .about-main {
+    padding: 4rem 1.5rem;
+  }
+
+  .about-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .about-bio {
+    text-align: center;
+  }
+
+
+  /* --- WHAT I DO CARDS --- */
+  .what-i-do {
+    padding: 4rem 1.5rem;
+  }
+
+  .cards-grid {
+    gap: 1.2rem;
+  }
+
+  .service-card {
+    flex: 1 1 220px;
+  }
+
+
+  /* --- SKILLS --- */
+  .skills-main {
+    padding: 4rem 1.5rem;
+  }
+
+  .skills-main-inner {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .skills-bars-col,
+  .skills-badges-col {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .soft-skills {
+    padding: 4rem 1.5rem;
+  }
+
+  .soft-card {
+    flex: 1 1 200px;
+  }
+
+
+  /* --- PORTFOLIO --- */
+  .portfolio-main {
+    padding: 4rem 1.5rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+
+  .portfolio-cta {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+
+  /* --- CONTACT --- */
+  .contact-main {
+    padding: 4rem 1.5rem;
+  }
+
+  .contact-main-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .contact-info {
+    max-width: 100%;
+  }
+
+  .contact-form-wrap {
+    padding: 2rem 1.5rem;
+  }
+
+
+  /* --- FOOTER --- */
+  .footer-inner {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+/* ============================================================
+   MOBILE — up to 480px
+   Full single-column layout, larger tap targets, compact padding
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* --- HEADER --- */
+  .site-header {
+    padding: 0 1rem;
+  }
+
+  .header-inner {
+    height: 60px;
+  }
+
+  /* Hide the brand name text on small mobile — logo image stays */
+  .logo-name {
+    display: none;
+  }
+
+  .logo-img {
+    height: 36px;
+  }
+
+  /* Shrink nav links to fit small screens */
+  .nav-list {
+    gap: 0.7rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+    padding-bottom: 2px;
+  }
+
+
+  /* --- HERO --- */
+  .hero {
+    padding: 0 1rem;
+    padding-top: 60px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  /* Completely hide watermark on mobile */
+  .hero-bg {
+    display: none;
+  }
+
+  .hero-shape {
+    display: none;
+  }
+
+  .hero-label {
+    font-size: 0.95rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+
+  /* --- PAGE BANNER --- */
+  .page-banner {
+    padding: 7rem 1rem 3rem;
+  }
+
+  .page-banner-sub {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+
+
+  /* --- ABOUT --- */
+  .about-main {
+    padding: 3.5rem 1rem;
+  }
+
+  .about-photo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .about-bio-text {
+    font-size: 0.95rem;
+  }
+
+
+  /* --- WHAT I DO CARDS --- */
+  .what-i-do {
+    padding: 3.5rem 1rem;
+  }
+
+  .cards-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+
+  /* --- SKILLS --- */
+  .skills-main {
+    padding: 3.5rem 1rem;
+  }
+
+  .soft-skills {
+    padding: 3.5rem 1rem;
+  }
+
+  .soft-cards-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .soft-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .badges-grid {
+    gap: 0.5rem;
+  }
+
+  .skill-badge {
+    font-size: 0.82rem;
+    padding: 0.45rem 0.9rem;
+  }
+
+
+  /* --- PORTFOLIO --- */
+  .portfolio-main {
+    padding: 3.5rem 1rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .project-img-wrap {
+    height: 190px;
+  }
+
+  .portfolio-cta {
+    padding: 1.8rem 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
+  .portfolio-cta .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+
+  /* --- CONTACT --- */
+  .contact-main {
+    padding: 3.5rem 1rem;
+  }
+
+  .contact-main-inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-form-wrap {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Stack Name + Email fields vertically on mobile */
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row .form-group {
+    flex: 1 1 100%;
+  }
+
+  .info-card {
+    padding: 1rem;
+  }
+
+
+  /* --- FOOTER --- */
+  .footer-inner {
+    flex-direction: column;
+    gap: 1.8rem;
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-nav-title {
+    font-size: 0.75rem;
+  }
+
+  .footer-link {
+    font-size: 0.88rem;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    gap: 0.4rem;
+  }
+
+  .footer-copy,
+  .footer-credit {
+    font-size: 0.8rem;
+  }
+
+  /* Section headings padding reduction */
+  .section-title {
+    margin-bottom: 2rem;
   }
 }
