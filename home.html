@@ -3,9 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Personal portfolio of LAWREX SERVICES — a passionate web developer and designer." />
-    <title>Home | LAWREX SERVICES</title>
-
+    <meta name="description" content="Personal portfolio of LAWRENCE — a passionate web developer and designer." />
+    <title>Home |LAWRENCE</title>
+<style>
+  * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  body {
+    font-family:Arial, helvetical,sans-
+  }
+</style>
     <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,8 +32,8 @@
 
         <!-- Logo / Brand Name -->
         <a href="index.html" class="logo logo-with-name">
-          <img src="LMAJ5406.PNG" alt="LAWREX SERVICES Logo" class="logo-img" />
-          <span class="logo-name">LAWREX SERVICES</span>
+          <img src="LMAJ5406.PNG" alt="MUOLOKWU LAWRENCE Logo" class="logo-img" />
+          <span class="logo-name">MUOLOKWU LAWRENCE</span>
         </a>
 
         <!-- Navigation Links -->
@@ -59,12 +68,19 @@
 
       <div class="hero-content">
 
-        <!-- Small label above headline -->
-        <span class="hero-label">👋 Hello, I am</span>
+        <!-- Decorative Welcome Badge -->
+        <div class="hero-welcome-badge">
+          <span class="hero-welcome-dots"></span>
+          <span class="hero-label">✦ Welcome to my portfolio! ✦</span>
+          <span class="hero-welcome-dots"></span>
+        </div>
 
-        <!-- Main Headline -->
+        <!-- Hello line (user's edit — kept) -->
+        <p class="hero-hello"><h2>Hello, I'm</h2></p>
+
+        <!-- Main Headline — MUOLOKWU in orange, LAWRENCE in white -->
         <h1 class="hero-title">
-          LAWREX <span class="highlight">SERVICES</span>
+          <span class="highlight">MUOLOKWU</span> LAWRENCE
         </h1>
 
         <!-- Tagline -->
@@ -73,8 +89,23 @@
           who crafts clean, meaningful digital experiences.
         </p>
 
-        <!-- Call To Action Button -->
-        <a href="portfolio.html" class="btn-primary">View My Work</a>
+        <!-- CTA Buttons Row -->
+        <div class="hero-btn-row">
+          <a href="portfolio.html" class="btn-primary">View My Work</a>
+          <a href="contact.html" class="btn-outline">Contact Me</a>
+        </div>
+
+        <!-- Circular Profile Image Frame -->
+        <div class="hero-frame-wrap">
+          <div class="hero-img-frame">
+            <!-- Replace 'your-photo.jpg' with your actual image file name -->
+            <img src="LMAJ5406.PNG" alt="Profile Photo" class="hero-frame-img" />
+            <div class="hero-frame-ring"></div>
+            <div class="hero-frame-ring hero-frame-ring--outer"></div>
+          </div>
+          <p class="hero-frame-label">MUOLOKWU LAWRENCE</p>
+          <p class="hero-frame-role">Web Developer &amp; Designer</p>
+        </div>
 
       </div>
     </section>
